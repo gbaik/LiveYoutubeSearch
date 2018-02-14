@@ -1,0 +1,6 @@
+# Compiled Dirs 
+dist/bundle.js
+dist/bundle.js.map
+
+# Dependency directorys
+node_modules 
