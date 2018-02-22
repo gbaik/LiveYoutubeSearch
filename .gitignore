@@ -2,5 +2,8 @@
 dist/bundle.js
 dist/bundle.js.map
 
-# Dependency directorys
+# Dependency Directories
 node_modules 
+
+# API Keys
+client_secrets.json
