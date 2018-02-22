@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { createStore } from "redux"
-// import { Provider } from "react-redux"
+import { createStore } from "redux"
+import { Provider } from "react-redux"
 
 // import reducer from "./store/reducers"
-// import middleware from "./store/middleware";
+import videoPlayer from "./stores/VideoPlayer/reducer";
+import middleware from "./stores/middleware";
 
-import App from "./App.js";
+import VideoPlayer from "./components/videoPlayer.js";
 
-// const store = createStore(reducer, middleware);
-// <Provider store={store}> </Provider>
+const store = createStore(videoPlayer, middleware);
+
+const App = () => (
+  <Provider store={store}> 
+    <VideoPlayer />
+  </Provider>
+);
 
 ReactDOM.render(<App />, document.getElementById("root"));

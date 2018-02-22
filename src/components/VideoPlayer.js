@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-class App extends Component { 
+class VideoPlayer extends Component { 
   constructor(props) { 
     super(props);
     
@@ -29,11 +29,10 @@ class App extends Component {
 
     return (
       <div>
-        {/* <iframe src="https://www.youtube.com/embed/6XPFG1keZak" allowFullScreen></iframe>         */}
         <iframe src={`https://www.youtube.com/embed/${videoId}`} allowFullScreen></iframe>
       </div>
     );
   };
 }
 
-export default App;
+export default VideoPlayer;
