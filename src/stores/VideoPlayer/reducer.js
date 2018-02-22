@@ -1,4 +1,6 @@
-const initialState = {};
+const initialState = {
+  videoId: '0ByoQm-vnYw'  
+};
 
 const videoPlayer = (state = initialState, action) => {
   switch(action.type) {

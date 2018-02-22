@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 class VideoPlayer extends Component { 
   constructor(props) { 
     super(props);
-    
-    this.state = {
-      videoId: '0ByoQm-vnYw'
-    }
   }
 
   componentDidMount() {
-    axios.get('/test')
-      .then(data => {
-        this.setState({
-          videoId: data.data.items[0].id.videoId
-        })
-      })
+    // axios.get('/test')
     //   .then(data => {
-    //     console.log(data);
-    //     console.log('hit');
+    //     this.setState({
+    //       videoId: data.data.items[0].id.videoId
+    //     })
     //   })
   }
 
   render() {
-    const { videoId } = this.state;
+    const { videoId } = this.props;
 
     return (
       <div>
@@ -35,4 +28,6 @@ class VideoPlayer extends Component {
   };
 }
 
-export default VideoPlayer;
+const mapStateToProps = (state) => ({videoId: state.videoPlayer.videoId });
+
+export default connect(mapStateToProps)(VideoPlayer);
