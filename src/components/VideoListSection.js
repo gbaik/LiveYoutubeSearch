@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => (
     handleVideoSelection: (history, video) => {
       updateVideoState(dispatch, video)
         .then(() => (
-          history.push('/search/videoPlayer')
+          history.push('/watch')
         ));
     }
   }

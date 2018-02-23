@@ -32,10 +32,10 @@ class Display extends Component {
               <Route exact path = '/' >
                 <Login />
               </Route>
-              <Route exact path = '/search' >
+              <Route path = '/results' >
                 <VideoList history = { history }/>
               </Route>
-              <Route path = '/search/videoPlayer'>
+              <Route path = '/watch'>
                 <VideoPlayer />
               </Route>
             </Switch>        
@@ -47,7 +47,7 @@ class Display extends Component {
 };
 
 const updateVideo = (videoSearchText) => (dispatch => (
-    axios.get(`/results?search_query=${videoSearchText}`)
+    axios.get(`/action?search_query=${videoSearchText}`)
       .then(videos => (
         dispatch(searchVideo(videos))
       ))
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => (
     handleVideoSearch: (history, videoSearchText) => (
       dispatch(updateVideo(videoSearchText))
         .then(() => (
-          history.push('/search')
+          history.push('/results')
         ))
     )
   }
