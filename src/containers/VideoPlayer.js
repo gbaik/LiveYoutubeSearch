@@ -3,17 +3,19 @@ import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+import { changeVideoPlayerId } from '../stores/VideoPlayer/actions';
+
 class VideoPlayer extends Component { 
   constructor(props) { 
     super(props);
   }
 
   componentDidMount() {
+    const { handleVideoPlayerIdChange } = this.props;
+    
     axios.get('/test')
       .then(data => {
-        this.setState({
-          videoId: data.data.items[0].id.videoId
-        })
+          handleVideoPlayerIdChange(data.data.items[0].id.videoId)
       })
   }
 
@@ -30,4 +32,12 @@ class VideoPlayer extends Component {
 
 const mapStateToProps = (state) => ({videoId: state.videoPlayer.videoId });
 
-export default connect(mapStateToProps)(VideoPlayer);
+const mapDispatchToProps = (dispatch) => (
+  {
+    handleVideoPlayerIdChange: (videoId) => (
+      dispatch(changeVideoPlayerId(videoId))
+    )
+  }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);
