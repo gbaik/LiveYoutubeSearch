@@ -6,13 +6,13 @@ import { Provider } from "react-redux"
 import reducer from "./stores/reducers"
 import middleware from "./stores/middleware";
 
-import VideoPlayer from "./containers/videoPlayer.js";
+import Display from "./components/Display.js";
 
 const store = createStore(reducer, middleware);
 
 const App = () => (
   <Provider store={store}> 
-    <VideoPlayer />
+    <Display />
   </Provider>
 );
 

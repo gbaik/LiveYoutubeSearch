@@ -9,12 +9,12 @@ class VideoPlayer extends Component {
   }
 
   componentDidMount() {
-    // axios.get('/test')
-    //   .then(data => {
-    //     this.setState({
-    //       videoId: data.data.items[0].id.videoId
-    //     })
-    //   })
+    axios.get('/test')
+      .then(data => {
+        this.setState({
+          videoId: data.data.items[0].id.videoId
+        })
+      })
   }
 
   render() {
