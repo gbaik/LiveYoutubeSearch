@@ -13,8 +13,8 @@ app.get('/', function (req, res) {
 
 app.get('/results', function (req, res) {
   const searchQuery = req.query.search_query;
-
-  request.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&eventType=live&type=video&q=${searchQuery}&key=`, function (error, response, body) {
+  
+  request.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&eventType=live&type=video&q=${searchQuery}&key=${process.env.youtubeAPI}`, function (error, response, body) {
     if (error) {
       throw error;
     }
