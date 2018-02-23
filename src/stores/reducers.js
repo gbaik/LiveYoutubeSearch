@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 import { reducer as formReducer } from 'redux-form';
 
-import videoPlayer from "./VideoPlayer/reducer";
+import Display from "./Display/reducer";
 
 export default combineReducers({
   form: formReducer,
-  videoPlayer
+  Display
 })

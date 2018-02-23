@@ -8,10 +8,11 @@ import Search from './Search.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 
+import { searchVideo } from '../stores/Display/actions';
+
 class Display extends Component { 
   constructor(props) { 
     super(props);
-    
   }
 
   render() {
@@ -36,11 +37,6 @@ class Display extends Component {
 }
 
 /*
-  1.
-  2. 
-  3. 
-  4. Figure out where the intial state is supposed to be using heirarchy
-  5. Using data update the state of video
   6. Display 5 - 10 videos in videolist
   7. Display videolist video with api videos
   8. 
@@ -48,18 +44,12 @@ class Display extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    handleVideoSearch: (videoSearchText) => {
+    handleVideoSearch: (videoSearchText) => (
       axios.get(`/results?search_query=${videoSearchText}`)
-        .then(data => {
-            console.log(data);
-            // (data.data.items[0].id.videoId)
-        })
-      // dispatch()
-    }
-    
-    // handleVideoPlayerIdChange: (videoId) => (
-    //   dispatch(changeVideoPlayerId(videoId))
-    // )
+        .then(videos => (
+            dispatch(searchVideo(videos))
+        ))
+    )
   }
 )
 
