@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import createBrowserHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createBrowserHistory';
 import { Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
@@ -18,13 +18,14 @@ class Display extends Component {
 
   render() {
     const { handleVideoSearch } = this.props;    
+    const history = createHistory();
     
     return (
       <div>
-        <Router history = { createBrowserHistory() }>
+        <Router history = { history }>
           <div>
             <Route>
-              <Search history = {history} onSubmit = { event => handleVideoSearch(event.videoSearchText)}/>
+              <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
             </Route>
             <Switch>
               <Route exact path = "/" >
@@ -46,15 +47,25 @@ class Display extends Component {
   7. Display videolist video with api videos
 */
 
+const updateVideo = (videoSearchText) => (dispatch => (
+    axios.get(`/results?search_query=${videoSearchText}`)
+      .then(videos => (
+        dispatch(searchVideo(videos))
+      ))
+  )
+);
+
 const mapDispatchToProps = (dispatch) => (
   {
-    handleVideoSearch: (videoSearchText) => (
-      axios.get(`/results?search_query=${videoSearchText}`)
-        .then(videos => (
-            dispatch(searchVideo(videos))
-        ))
+    handleVideoSearch: (history, videoSearchText) => (
+      dispatch(updateVideo(videoSearchText))
+        .then(() => {
+          history.push('/search')
+        })
     )
   }
 )
+
+// Display = withRouter(Display);
 
 export default connect(null, mapDispatchToProps)(Display);
