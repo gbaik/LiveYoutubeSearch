@@ -1,8 +1,10 @@
 import React from 'react';
 
-const VideoList = ({}) => (
+const VideoList = ({videos}) => (
   <div>
-    Video Lists
+    {videos.map(video => (
+      <img src = { video.snippet.thumbnails.default.url } />
+    ))}
   </div>
 );
 

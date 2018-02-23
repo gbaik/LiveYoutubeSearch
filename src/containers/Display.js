@@ -17,7 +17,7 @@ class Display extends Component {
   }
 
   render() {
-    const { handleVideoSearch } = this.props;    
+    const { videos, handleVideoSearch } = this.props;    
     const history = createHistory();
     
     return (
@@ -32,7 +32,7 @@ class Display extends Component {
                 <VideoPlayer />
               </Route>
               <Route path = "/search" >
-                <VideoList />
+                <VideoList videos = { videos }/>
               </Route>
             </Switch>        
           </div>
@@ -43,7 +43,6 @@ class Display extends Component {
 }
 
 /*
-  6. Display 5 - 10 videos in videolist
   7. Display videolist video with api videos
 */
 
@@ -55,17 +54,17 @@ const updateVideo = (videoSearchText) => (dispatch => (
   )
 );
 
+const mapStateToProps = (state) => ({videos: state.Display.videos});
+
 const mapDispatchToProps = (dispatch) => (
   {
     handleVideoSearch: (history, videoSearchText) => (
       dispatch(updateVideo(videoSearchText))
-        .then(() => {
+        .then(() => (
           history.push('/search')
-        })
+        ))
     )
   }
 )
 
-// Display = withRouter(Display);
-
-export default connect(null, mapDispatchToProps)(Display);
+export default connect(mapStateToProps, mapDispatchToProps)(Display);
