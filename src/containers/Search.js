@@ -16,7 +16,8 @@ class Search extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, history } = this.props;
+    console.log('hit',this.props.handleSubmit);
     
     return (
       <div>
