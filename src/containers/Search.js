@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Field, reduxForm } from 'redux-form';
-import { withRouter } from 'react-router-dom';
 
 const RenderField = (field) => {
   const { meta: { touched, error, warning }} = field; 
@@ -29,8 +28,6 @@ class Search extends Component {
     );
   };
 }
-
-// const SearchWithRouter = withRouter(Search);
 
 export default reduxForm({
   form: 'Search'

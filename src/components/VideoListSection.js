@@ -11,7 +11,7 @@ const VideoListSection = ({ history, video, handleVideoSelection }) => (
   </div>
 );
 
-async function test (dispatch, video) {
+async function updateVideoState (dispatch, video) {
   await dispatch(updateVideoPlayer(video));
 
   return;
@@ -20,7 +20,7 @@ async function test (dispatch, video) {
 const mapDispatchToProps = (dispatch) => (
   {
     handleVideoSelection: (history, video) => {
-      test(dispatch, video)
+      updateVideoState(dispatch, video)
         .then(() => (
           history.push('/search/videoPlayer')
         ));
