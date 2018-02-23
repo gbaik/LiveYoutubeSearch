@@ -1,6 +1,7 @@
 const passport = require('passport');
 const User = require('../../database/schema.js');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const config = require('../../config/client_secrets.json');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -11,7 +12,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new GoogleStrategy({
-
+  clientID: config.Google.client_id,
+  clientSecret: config.Google.client_secret,
+  callbackURL: config.Google.redirect_uris
   },
   function(request, accessToken, refreshToken, profile, done) {
     User.findOne({ profile_id: profile.id }, function(err, user) {

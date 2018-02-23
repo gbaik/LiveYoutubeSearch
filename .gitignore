@@ -6,4 +6,4 @@ dist/bundle.js.map
 node_modules 
 
 # API Keys
-client_secrets.json
+config/client_secrets.json
