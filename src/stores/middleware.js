@@ -6,7 +6,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 const middleware = applyMiddleware(
   thunk,
   promiseMiddleware(), 
-  logger
+  // logger
 );
 
 export default middleware;

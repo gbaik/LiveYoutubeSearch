@@ -10,15 +10,6 @@ class VideoPlayer extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    const { handleVideoPlayerIdChange } = this.props;
-    
-    axios.get('/test')
-      .then(data => {
-          handleVideoPlayerIdChange(data.data.items[0].id.videoId)
-      })
-  }
-
   render() {
     const { videoId } = this.props;
 
@@ -32,12 +23,4 @@ class VideoPlayer extends Component {
 
 const mapStateToProps = (state) => ({videoId: state.videoPlayer.videoId });
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    handleVideoPlayerIdChange: (videoId) => (
-      dispatch(changeVideoPlayerId(videoId))
-    )
-  }
-)
-
-export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);
+export default connect(mapStateToProps)(VideoPlayer);

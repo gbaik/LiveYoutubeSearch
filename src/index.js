@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 import reducer from "./stores/reducers"
 import middleware from "./stores/middleware";
 
-import Display from "./components/Display.js";
+import Display from "./containers/Display.js";
 
 const store = createStore(reducer, middleware);
 
