@@ -1,4 +1,5 @@
 const initialState = {
+  video: {},
   videos: []
 };
 
@@ -10,6 +11,13 @@ const display = (state = initialState, action) => {
       return {
         ...state,
         videos: videos.data.items
+      }
+    case 'UPDATE_VIDEO_PLAYER':
+      const { video } = action.payload;
+
+      return {
+        ...state,
+        video: video
       }
     default:
       return state;

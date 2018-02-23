@@ -9,18 +9,18 @@ class VideoPlayer extends Component {
   }
 
   render() {
-    const { videoId } = this.props;
+    const { video, videoId } = this.props;
 
     return (
       <div>
-        {/* <iframe src={`https://www.youtube.com/embed/${videoId}`} allowFullScreen></iframe> */}
-        <iframe src={'https://www.youtube.com/embed/0ByoQm-vnYw'} allowFullScreen></iframe>
-      </div>
+        <iframe src={`https://www.youtube.com/embed/${video.id.videoId}`} allowFullScreen></iframe>
+        <div>{ video.snippet.title }</div>      
+        <div>{ video.snippet.description }</div>
+    </div>
     );
   };
 }
 
-// const mapStateToProps = (state) => ({videoId: state.videoPlayer.videoId });
+const mapStateToProps = (state) => ({video: state.Display.video });
 
-// export default connect(mapStateToProps)(VideoPlayer);
-export default VideoPlayer;
+export default connect(mapStateToProps)(VideoPlayer);

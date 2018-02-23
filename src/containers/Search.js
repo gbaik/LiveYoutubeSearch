@@ -30,8 +30,8 @@ class Search extends Component {
   };
 }
 
-const SearchWithRouter = withRouter(Search);
+// const SearchWithRouter = withRouter(Search);
 
 export default reduxForm({
   form: 'Search'
-})(SearchWithRouter);
+})(Search);

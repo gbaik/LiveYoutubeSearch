@@ -6,3 +6,12 @@ export const searchVideo = (videos) => (
     }
   }
 )
+
+export const updateVideoPlayer = (video) => (
+  {
+    type: 'UPDATE_VIDEO_PLAYER',
+    payload: {
+      video: video
+    }
+  }
+)

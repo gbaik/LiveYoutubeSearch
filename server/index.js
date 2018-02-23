@@ -16,6 +16,10 @@ app.get('/search', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../dist/index.html'));  
 })
 
+app.get('/search/videoPlayer', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/../dist/index.html'));  
+})
+
 app.get('/results', function (req, res) {
   const searchQuery = req.query.search_query;
   

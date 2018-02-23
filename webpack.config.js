@@ -5,7 +5,7 @@ var DIST_DIR = path.join(__dirname, '/dist');
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
-    bundle: `${SRC_DIR}/index.js`
+    bundle: ['babel-polyfill', `${SRC_DIR}/index.js`]
   },
   output: {
     filename: '[name].js',
@@ -18,7 +18,7 @@ module.exports = {
         include: SRC_DIR,
         test: /\.jsx?/,
         query: {
-          presets: ['react', 'es2015', 'stage-3']
+          presets: ['react', 'es2015', 'stage-0', 'stage-3']
         }
       }
     ]

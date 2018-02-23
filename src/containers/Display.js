@@ -6,6 +6,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import Search from './Search.js';
+import Login from './Login.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 
@@ -28,11 +29,14 @@ class Display extends Component {
               <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
             </Route>
             <Switch>
-              <Route exact path = "/" >
-                <VideoPlayer />
+              <Route exact path = '/' >
+                <Login />
               </Route>
-              <Route path = "/search" >
-                <VideoList videos = { videos }/>
+              <Route exact path = '/search' >
+                <VideoList history = { history }/>
+              </Route>
+              <Route path = '/search/videoPlayer'>
+                <VideoPlayer />
               </Route>
             </Switch>        
           </div>
@@ -40,11 +44,7 @@ class Display extends Component {
       </div>
     );
   };
-}
-
-/*
-  7. Display videolist video with api videos
-*/
+};
 
 const updateVideo = (videoSearchText) => (dispatch => (
     axios.get(`/results?search_query=${videoSearchText}`)
@@ -53,8 +53,6 @@ const updateVideo = (videoSearchText) => (dispatch => (
       ))
   )
 );
-
-const mapStateToProps = (state) => ({videos: state.Display.videos});
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -65,6 +63,6 @@ const mapDispatchToProps = (dispatch) => (
         ))
     )
   }
-)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Display);
+export default connect(null, mapDispatchToProps)(Display);
