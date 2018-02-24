@@ -15,3 +15,12 @@ export const updateVideoPlayer = (video) => (
     }
   }
 )
+
+export const updateVideoMessages = (messages) => (
+  {
+    type: 'UPDATE_VIDEO_MESSAGES',
+    payload: {
+      messages: messages
+    }
+  }
+)

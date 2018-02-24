@@ -18,7 +18,7 @@ class VideoPlayer extends Component {
         <iframe src={`https://www.youtube.com/embed/${video.id.videoId}`} allowFullScreen></iframe>
         <div>{ video.snippet.title }</div>      
         <div>{ video.snippet.description }</div>
-        {messages.items.map((message, index) => (
+        {messages.map((message, index) => (
           <Chat message = { message.snippet } key = { index }/>
         ))}
     </div>

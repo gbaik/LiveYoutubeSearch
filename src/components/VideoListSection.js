@@ -1,7 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-import { updateVideoPlayer } from '../stores/Display/actions';
+import { updateVideoPlayer, updateVideoMessages } from '../stores/Display/actions';
 
 const VideoListSection = ({ history, video, handleVideoSelection }) => (
   <div>
@@ -13,6 +14,12 @@ const VideoListSection = ({ history, video, handleVideoSelection }) => (
 
 async function updateVideoState (dispatch, video) {
   await dispatch(updateVideoPlayer(video));
+
+  const liveChatData = await axios.get(`/search/liveChatId?videoId=${video.id.videoId}`);
+  const liveChatId = liveChatData["data"]["items"][0]["liveStreamingDetails"]["activeLiveChatId"];
+  const messages = await axios.get(`/search/messages?liveChatId=${liveChatId}`);
+
+  await dispatch(updateVideoMessages(messages));
 
   return;
 }
