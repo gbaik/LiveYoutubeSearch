@@ -18,6 +18,7 @@ IMPORTANT: ensure `mongodb` is running before performing these steps.
 
 ## Future Work
 - Remove Semantic UI, and style with Grid + Flexbox
+- Fix Heroku Deployment
 - Make it so the url, reflects the video shown instead of being for visual
 - Make video chat update in real time using sockets
 - Seed the database and have a default video list shown
