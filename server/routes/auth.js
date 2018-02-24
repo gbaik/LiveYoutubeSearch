@@ -1,6 +1,6 @@
 const express = require('express');
-const path = require('path');
 const middleware = require('../middleware');
+const path = require('path');
 
 const router = express.Router();
 
@@ -22,10 +22,5 @@ router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
-
-// router.route('/')
-//   .get(middleware.auth.verify, (req, res) => {
-//     res.sendFile(path.resolve(__dirname + '/../../dist/index.html'));
-//   });
   
 module.exports = router;
