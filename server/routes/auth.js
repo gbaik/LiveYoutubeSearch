@@ -5,8 +5,11 @@ const middleware = require('../middleware');
 const router = express.Router();
 
 router.get('/auth/google', middleware.passport.authenticate('google', {
-  scope: [ 'https://www.googleapis.com/auth/plus.login',
-  'https://www.googleapis.com/auth/plus.profile.emails.read' ]
+  scope: [ 
+    'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/plus.profile.emails.read',
+    'https://www.googleapis.com/auth/youtube'
+  ]
 }));
 
 router.get('/auth/google/callback',
@@ -20,4 +23,9 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+// router.route('/')
+//   .get(middleware.auth.verify, (req, res) => {
+//     res.sendFile(path.resolve(__dirname + '/../../dist/index.html'));
+//   });
+  
 module.exports = router;

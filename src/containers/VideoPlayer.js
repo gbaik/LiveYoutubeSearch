@@ -11,19 +11,24 @@ class VideoPlayer extends Component {
   }
 
   render() {
-    const { video, videoId } = this.props;
+    const { video, messages, videoId } = this.props;
 
     return (
       <div>
         <iframe src={`https://www.youtube.com/embed/${video.id.videoId}`} allowFullScreen></iframe>
         <div>{ video.snippet.title }</div>      
         <div>{ video.snippet.description }</div>
-        <Chat />
+        {messages.items.map((message, index) => (
+          <Chat message = { message.snippet } key = { index }/>
+        ))}
     </div>
     );
   };
 }
 
-const mapStateToProps = (state) => ({video: state.Display.video });
+const mapStateToProps = (state) => ({
+  video: state.Display.video,
+  messages: state.Display.messages
+});
 
 export default connect(mapStateToProps)(VideoPlayer);

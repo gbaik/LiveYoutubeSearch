@@ -17,6 +17,7 @@ passport.use(new GoogleStrategy({
   callbackURL: config.Google.redirect_uris
   },
   function(request, accessToken, refreshToken, profile, done) {
+    console.log('profile:', profile);
     User.findOne({ profile_id: profile.id }, function(err, user) {
       if (err) {
           throw err;

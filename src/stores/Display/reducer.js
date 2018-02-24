@@ -1,6 +1,7 @@
 const initialState = {
   video: {},
-  videos: []
+  videos: [],
+  messages: {}
 };
 
 const display = (state = initialState, action) => {

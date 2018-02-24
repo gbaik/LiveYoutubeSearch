@@ -1,16 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import VideoListSection from '../components/VideoListSection.js';
 
 const VideoList = ({ history, videos }) => (
   <div>
-    {videos.map((video, id) => (
-      <VideoListSection history = {history} video = { video } key = {id} />
+    {videos.map((video, index) => (
+      <VideoListSection history = {history} video = { video } key = { index } />
     ))}
   </div>
 );
 
-const mapStateToProps = (state) => ({videos: state.Display.videos});
+const mapStateToProps = (state) => ({ videos: state.Display.videos });
 
 export default connect(mapStateToProps)(VideoList);
