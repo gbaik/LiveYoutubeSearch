@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => (
     handleVideoSearch: (history, videoSearchText) => (
       dispatch(updateVideo(videoSearchText))
         .then(() => (
-          history.push('/results')
+          history.push(`/results?search_query=${videoSearchText}`)
         ))
     ),
     handleMessageSend: (liveChatId, videoChatText) => {
