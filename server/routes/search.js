@@ -22,6 +22,7 @@ router.get('/liveChatId', function (req, res) {
     if (error) {
       throw error;
     }
+
     res.end(body);
   });
 })
@@ -37,6 +38,5 @@ router.get('/messages', function (req, res) {
     res.end(body);
   });
 });
-
 
 module.exports = router;

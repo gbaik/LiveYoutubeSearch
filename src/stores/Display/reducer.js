@@ -1,7 +1,8 @@
 const initialState = {
   video: {},
   videos: [],
-  messages: []
+  messages: [],
+  liveChatId: ''
 };
 
 const display = (state = initialState, action) => {
@@ -21,11 +22,12 @@ const display = (state = initialState, action) => {
         video: video
       }
     case 'UPDATE_VIDEO_MESSAGES':
-      const { messages } = action.payload;
-      
+      const { messages, liveChatId } = action.payload;
+
       return {
         ...state,
-        messages: messages.data.items
+        messages: messages.data.items,
+        liveChatId: liveChatId
       }
     default:
       return state;

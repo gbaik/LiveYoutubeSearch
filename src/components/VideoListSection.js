@@ -19,7 +19,7 @@ async function updateVideoState (dispatch, video) {
   const liveChatId = liveChatData["data"]["items"][0]["liveStreamingDetails"]["activeLiveChatId"];
   const messages = await axios.get(`/search/messages?liveChatId=${liveChatId}`);
 
-  await dispatch(updateVideoMessages(messages));
+  await dispatch(updateVideoMessages(liveChatId, messages));
 
   return;
 }

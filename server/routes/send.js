@@ -4,18 +4,17 @@ const request = require('request');
 const router = express.Router();
 
 router.get('/message', function (req, res) {
-  const message = req.query.videoChatText;
-  const accessToken = ''
-
+  const { liveChatId, message } = req.query;
+  
   const options = {
     method: 'POST',
     url: `https://www.googleapis.com/youtube/v3/liveChat/messages?part=snippet&access_token=${accessToken}`, 
     body: {
       "snippet": {
         "type": "textMessageEvent",
-        "liveChatId": "",
+        "liveChatId": liveChatId,
         "textMessageDetails": {
-          "messageText": "How is 3veryone doing tonight?"
+          "messageText": message
         }
       }
     },
@@ -26,7 +25,7 @@ router.get('/message', function (req, res) {
     if (error) {
       throw error;
     }
-    console.log('mesage sent:', body);
+
     res.send(body);
   });
 });

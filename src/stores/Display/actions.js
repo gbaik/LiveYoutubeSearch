@@ -16,10 +16,11 @@ export const updateVideoPlayer = (video) => (
   }
 )
 
-export const updateVideoMessages = (messages) => (
+export const updateVideoMessages = (liveChatId, messages) => (
   {
     type: 'UPDATE_VIDEO_MESSAGES',
     payload: {
+      liveChatId: liveChatId,
       messages: messages
     }
   }

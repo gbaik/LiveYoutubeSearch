@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import createHistory from 'history/createBrowserHistory';
-import { Router, Route, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router'
+import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import Search from './Search.js';
@@ -18,34 +18,29 @@ class Display extends Component {
   }
 
   render() {
-    const { videos, handleVideoSearch, handleMessageSend } = this.props;    
-    const history = createHistory();
+    const { history, liveChatId, videos, handleVideoSearch, handleMessageSend } = this.props;
     
     return (
       <div>
-        <Router history = { history }>
-          <div>
-            <Switch>                          
-              <Route exact path = '/' >
-                <Login history = {history} />
-              </Route>
-              <Route path = '/results' >
-                <div>
-                  <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
-                  <VideoList history = { history }/>
-                  <a  href="/logout"> Logout </a>
-                </div>
-              </Route>
-              <Route path = '/watch'>
-                <div>
-                  <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
-                  <VideoPlayer onSubmit = { event => handleMessageSend(event.videoChatText) }/>
-                  <a  href="/logout"> Logout </a>                  
-                </div>
-              </Route>
-            </Switch>        
-          </div>
-        </Router>
+        <Switch>                          
+          <Route exact path = '/' >
+            <Login />
+          </Route>
+          <Route path = '/results' >
+            <div>
+              <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
+              <VideoList history = { history } />
+              <a  href="/logout"> Logout </a>
+            </div>
+          </Route>
+          <Route path = '/watch'>
+            <div>
+              <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
+              <VideoPlayer onSubmit = { event => handleMessageSend(liveChatId, event.videoChatText) }/>
+              <a  href="/logout"> Logout </a>                  
+            </div>
+          </Route>
+        </Switch>        
       </div>
     );
   };
@@ -58,9 +53,11 @@ const updateVideo = (videoSearchText) => (dispatch => (
     ))
 ));
 
-const sendMessage = (videoChatText) => (dispatch => (
-  axios.get(`/send/message?message=${videoChatText}`)
+const sendMessage = (liveChatId, videoChatText) => (dispatch => (
+  axios.get(`/send/message?liveChatId=${liveChatId}&message=${videoChatText}`)
 ));
+
+const mapStateToProps = (state) => ({ liveChatId: state.Display.liveChatId });
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -70,10 +67,12 @@ const mapDispatchToProps = (dispatch) => (
           history.push('/results')
         ))
     ),
-    handleMessageSend: (videoChatText) => (
-      dispatch(sendMessage(videoChatText))
-    )
+    handleMessageSend: (liveChatId, videoChatText) => {
+      if (videoChatText) {
+        dispatch(sendMessage(liveChatId, videoChatText))
+      }
+    }
   }
 );
 
-export default connect(null, mapDispatchToProps)(Display);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Display));

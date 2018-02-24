@@ -6,7 +6,7 @@ import VideoListSection from '../components/VideoListSection.js';
 const VideoList = ({ history, videos }) => (
   <div>
     {videos.map((video, index) => (
-      <VideoListSection history = {history} video = { video } key = { index } />
+      <VideoListSection history = { history } video = { video } key = { index } />
     ))}
   </div>
 );

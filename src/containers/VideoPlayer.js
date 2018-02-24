@@ -28,10 +28,10 @@ class VideoPlayer extends Component {
         <div>{ video.snippet.title }</div>      
         <div>{ video.snippet.description }</div>
         {messages.map((message, index) => (
-          <Chat message = { message.snippet } onSubmit = {(event) => console.log(event)} key = { index }/>
+          <Chat message = { message.snippet } key = { index }/>
         ))}
         <form onSubmit = { handleSubmit }>
-          <Field name = 'videoChatText' component=  { RenderField } />  
+          <Field name = 'videoChatText' component =  { RenderField } />  
           <button type = 'submit'>Send</button>
         </form>
     </div>
