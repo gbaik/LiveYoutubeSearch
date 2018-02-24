@@ -1,7 +1,7 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import React from 'react';
 
-import VideoListSection from '../components/VideoListSection.js';
+import VideoListSection from './VideoListSection.js';
 
 const VideoList = ({ history, videos }) => (
   <div>

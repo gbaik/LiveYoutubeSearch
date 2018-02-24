@@ -1,14 +1,8 @@
+import { Field, reduxForm } from 'redux-form';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Field, reduxForm } from 'redux-form';
 
-const RenderField = (field) => {
-  const { meta: { touched, error, warning }} = field; 
-
-  return (
-    <input type="text" {...field.input} />
-  )
-};
+import RenderField from '../components/RenderField.js';
 
 class Search extends Component { 
   constructor(props) { 

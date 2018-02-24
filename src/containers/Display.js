@@ -1,12 +1,12 @@
+import axios from 'axios';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router'
 import { Route, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { withRouter } from 'react-router'
 
+import Login from '../components/Login.js';
 import Search from './Search.js';
-import Login from './Login.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 
@@ -30,14 +30,14 @@ class Display extends Component {
             <div>
               <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
               <VideoList history = { history } />
-              <a  href="/logout"> Logout </a>
+              <a  href='/logout'> Logout </a>
             </div>
           </Route>
           <Route path = '/watch'>
             <div>
               <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
               <VideoPlayer onSubmit = { event => handleMessageSend(liveChatId, event.videoChatText) }/>
-              <a  href="/logout"> Logout </a>                  
+              <a  href='/logout'> Logout </a>                  
             </div>
           </Route>
         </Switch>        

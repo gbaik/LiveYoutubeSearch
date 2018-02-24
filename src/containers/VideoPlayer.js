@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-import Chat from './Chat.js';
-
-const RenderField = (field) => {
-  const { meta: { touched, error, warning }} = field; 
-
-  return (
-    <input type="text" {...field.input} />
-  )
-};
+import Chat from '../components/Chat.js';
+import RenderField from '../components/RenderField.js';
 
 class VideoPlayer extends Component { 
   constructor(props) { 
@@ -31,7 +24,7 @@ class VideoPlayer extends Component {
           <Chat message = { message.snippet } key = { index }/>
         ))}
         <form onSubmit = { handleSubmit }>
-          <Field name = 'videoChatText' component =  { RenderField } />  
+          <Field name = 'videoChatText' component = { RenderField } />  
           <button type = 'submit'>Send</button>
         </form>
     </div>

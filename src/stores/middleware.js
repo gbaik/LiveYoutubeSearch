@@ -1,7 +1,7 @@
-import { applyMiddleware } from "redux"
-import logger from "redux-logger"
-import thunk from "redux-thunk"
+import { applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 import promiseMiddleware from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
 
 const middleware = applyMiddleware(
   thunk,
