@@ -1,8 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
-const Login = ({}) => (
+const Login = ({ history }) => (
   <div>
-    Please sign in
+    <a  href="/auth/google"> Google Sign In </a>
   </div>
 );
 

@@ -25,18 +25,21 @@ class Display extends Component {
       <div>
         <Router history = { history }>
           <div>
-            <Route>
-              <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
-            </Route>
-            <Switch>
+            <Switch>                          
               <Route exact path = '/' >
-                <Login />
+                <Login history = {history} />
               </Route>
               <Route path = '/results' >
-                <VideoList history = { history }/>
+                <div>
+                  <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
+                  <VideoList history = { history }/>
+                </div>
               </Route>
               <Route path = '/watch'>
-                <VideoPlayer />
+                <div>
+                  <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
+                  <VideoPlayer />
+                </div>
               </Route>
             </Switch>        
           </div>
@@ -47,7 +50,7 @@ class Display extends Component {
 };
 
 const updateVideo = (videoSearchText) => (dispatch => (
-    axios.get(`/action?search_query=${videoSearchText}`)
+    axios.get(`/search?query=${videoSearchText}`)
       .then(videos => (
         dispatch(searchVideo(videos))
       ))

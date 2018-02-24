@@ -11,8 +11,8 @@ router.get('/auth/google', middleware.passport.authenticate('google', {
 
 router.get('/auth/google/callback',
 	middleware.passport.authenticate( 'google', {
-		successRedirect: '/search',
-		failureRedirect: '/auth/google'
+		successRedirect: '/results',
+		failureRedirect: '/'
 }));
 
 module.exports = router;
