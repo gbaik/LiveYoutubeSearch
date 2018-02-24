@@ -24,6 +24,8 @@ app.use('/', routes.auth);
 
 app.use('/search', routes.search);
 
+app.use('/send', routes.send);
+
 app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
 });

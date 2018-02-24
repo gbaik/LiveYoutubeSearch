@@ -18,7 +18,7 @@ class Display extends Component {
   }
 
   render() {
-    const { videos, handleVideoSearch } = this.props;    
+    const { videos, handleVideoSearch, handleMessageSend } = this.props;    
     const history = createHistory();
     
     return (
@@ -39,7 +39,7 @@ class Display extends Component {
               <Route path = '/watch'>
                 <div>
                   <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
-                  <VideoPlayer />
+                  <VideoPlayer onSubmit = { event => handleMessageSend(event.videoChatText) }/>
                   <a  href="/logout"> Logout </a>                  
                 </div>
               </Route>
@@ -52,12 +52,15 @@ class Display extends Component {
 };
 
 const updateVideo = (videoSearchText) => (dispatch => (
-    axios.get(`/search?query=${videoSearchText}`)
-      .then(videos => (
-        dispatch(searchVideo(videos))
-      ))
-  )
-);
+  axios.get(`/search?query=${videoSearchText}`)
+    .then(videos => (
+      dispatch(searchVideo(videos))
+    ))
+));
+
+const sendMessage = (videoChatText) => (dispatch => (
+  axios.get(`/send/message?message=${videoChatText}`)
+));
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -66,6 +69,9 @@ const mapDispatchToProps = (dispatch) => (
         .then(() => (
           history.push('/results')
         ))
+    ),
+    handleMessageSend: (videoChatText) => (
+      dispatch(sendMessage(videoChatText))
     )
   }
 );

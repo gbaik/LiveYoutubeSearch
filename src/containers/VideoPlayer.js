@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { Field, reduxForm } from 'redux-form';
 
 import Chat from './Chat.js';
+
+const RenderField = (field) => {
+  const { meta: { touched, error, warning }} = field; 
+
+  return (
+    <input type="text" {...field.input} />
+  )
+};
 
 class VideoPlayer extends Component { 
   constructor(props) { 
@@ -11,7 +20,7 @@ class VideoPlayer extends Component {
   }
 
   render() {
-    const { video, messages, videoId } = this.props;
+    const { video, messages, videoId, handleSubmit } = this.props;
 
     return (
       <div>
@@ -19,8 +28,12 @@ class VideoPlayer extends Component {
         <div>{ video.snippet.title }</div>      
         <div>{ video.snippet.description }</div>
         {messages.map((message, index) => (
-          <Chat message = { message.snippet } key = { index }/>
+          <Chat message = { message.snippet } onSubmit = {(event) => console.log(event)} key = { index }/>
         ))}
+        <form onSubmit = { handleSubmit }>
+          <Field name = 'videoChatText' component=  { RenderField } />  
+          <button type = 'submit'>Send</button>
+        </form>
     </div>
     );
   };
@@ -31,4 +44,8 @@ const mapStateToProps = (state) => ({
   messages: state.Display.messages
 });
 
-export default connect(mapStateToProps)(VideoPlayer);
+VideoPlayer = connect(mapStateToProps)(VideoPlayer);
+
+export default reduxForm({
+  form: 'Chat'
+})(VideoPlayer);

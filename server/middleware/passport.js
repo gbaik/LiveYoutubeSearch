@@ -1,6 +1,7 @@
 const passport = require('passport');
 const User = require('../../database/schema.js');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('../../config/client_secrets.json');
 
 passport.serializeUser(function(user, done) {
@@ -16,8 +17,8 @@ passport.use(new GoogleStrategy({
   clientSecret: config.Google.client_secret,
   callbackURL: config.Google.redirect_uris
   },
-  function(request, accessToken, refreshToken, profile, done) {
-    console.log('profile:', profile);
+  function(accessToken, refreshToken, profile, cb) {
+    console.log('accessToken:', accessToken);
     User.findOne({ profile_id: profile.id }, function(err, user) {
       if (err) {
           throw err;
@@ -34,7 +35,7 @@ passport.use(new GoogleStrategy({
           }
         });
       } 
-        return done(err, user);
+        return cb(err, user);
       
     })
   }
