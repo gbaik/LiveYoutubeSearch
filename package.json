@@ -9,7 +9,7 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "build": "webpack --config=webpack.config.js --display-error-details --watch",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "webpack --config=webpack.config.js -p"
   },
   "author": "Gideon Baik",
   "license": "MIT",
