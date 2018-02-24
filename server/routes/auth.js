@@ -15,4 +15,9 @@ router.get('/auth/google/callback',
 		failureRedirect: '/'
 }));
 
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 module.exports = router;

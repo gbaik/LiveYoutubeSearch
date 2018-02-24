@@ -33,12 +33,14 @@ class Display extends Component {
                 <div>
                   <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
                   <VideoList history = { history }/>
+                  <a  href="/logout"> Logout </a>
                 </div>
               </Route>
               <Route path = '/watch'>
                 <div>
                   <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
                   <VideoPlayer />
+                  <a  href="/logout"> Logout </a>                  
                 </div>
               </Route>
             </Switch>        
