@@ -2,6 +2,9 @@
   "name": "gideon-baik-stream-labs-submission",
   "version": "1.0.6",
   "description": "Gideon Baik StreamLabs Submission",
+  "engines": {
+    "node": ">=8.4.0"
+  },
   "main": "index.js",
   "scripts": {
     "server": "nodemon server/index.js",
