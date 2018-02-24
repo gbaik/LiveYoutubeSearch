@@ -1,7 +1,7 @@
 {
-  "name": "basic-react-boilerplate",
+  "name": "gideon-baik-stream-labs-submission",
   "version": "1.0.6",
-  "description": "Basic react boilerplate",
+  "description": "Gideon Baik StreamLabs Submission",
   "main": "index.js",
   "scripts": {
     "server": "nodemon server/index.js",
