@@ -24,17 +24,19 @@ class Display extends Component {
       <div>
         <Switch>                          
           <Route exact path = '/' >
-            <Login />
+            <div className = 'login'>
+              <Login/>
+            </div>
           </Route>
           <Route path = '/results' >
-            <div>
+            <div className = 'video_list' >
               <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
               <VideoList history = { history } />
               <a  href='/logout'> Logout </a>
             </div>
           </Route>
           <Route path = '/watch'>
-            <div>
+            <div className = 'video_player' >
               <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
               <VideoPlayer onSubmit = { event => handleMessageSend(liveChatId, event.videoChatText) }/>
               <a  href='/logout'> Logout </a>                  

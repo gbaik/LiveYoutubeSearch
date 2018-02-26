@@ -1,0 +1,44 @@
+body {
+  background: linear-gradient(45deg,#9b5499,#57549b);
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.login {
+display: grid;
+grid-template-columns: 1fr 400px 1fr;
+grid-template-rows: 1fr 350px 1fr;
+grid-gap: 150px 150px;
+grid-template-areas:
+  " . . . "
+  " . google_sign_in . "
+  " . . . " ;
+}
+
+.google_sign_in {
+  grid-area: google_sign_in;
+  border: 2px solid #f9f1f1;
+  border-radius: 5px;
+  background-color: #fffff2;
+
+  display: grid;
+  grid-template-columns: 50px 1fr 50px ;
+  grid-template-rows: 25px 50px 1fr 25px;
+  grid-template-areas:
+    " . . ."
+    " . google_sign_in_header . "
+    " . google_sign_in_button . "
+    " . . .";    
+}
+
+.google_sign_in > .header {
+  grid-area: google_sign_in_header;
+  align-self: center; 
+  justify-self: center;
+}
+
+.google_sign_in > .button {
+  grid-area: google_sign_in_button;
+  align-self: center; 
+  justify-self: center;
+}
