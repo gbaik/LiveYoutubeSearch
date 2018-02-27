@@ -1,4 +1,3 @@
-// const config = require('../../config/client_secrets.json');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require('passport');
 const User = require('../../database/schema.js');

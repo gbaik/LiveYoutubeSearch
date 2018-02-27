@@ -17,8 +17,7 @@ IMPORTANT: ensure `mongodb` is running before performing these steps.
 ```
 
 ## Future Work
-- Remove Semantic UI, and style with Grid + Flexbox
-- Fix Heroku Deployment
+- Fix styling
 - Make it so the url, reflects the video shown instead of being for visual
 - Make video chat update in real time using sockets
 - Seed the database and have a default video list shown
@@ -26,4 +25,3 @@ IMPORTANT: ensure `mongodb` is running before performing these steps.
 - Sanitize form inputs
 - Implement session storage to:
     - Temporarily store access token, and use them to send messages (instead of it being hardcoded)
-    - Verify the pages (currently login can skipped over through manual url redirects)
