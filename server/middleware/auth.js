@@ -6,7 +6,7 @@ const redis = require('redis');
 const params = process.env.REDIS_URL ? url.parse(process.env.REDIS_URL) : null;
 const host = params ? params.hostname : 'localhost';
 const port = params ? params.port : 6379;
-
+const auth = params ? params.auth : null;
 
 module.exports.verify = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -18,6 +18,7 @@ module.exports.verify = (req, res, next) => {
 
 console.log('host:', host);
 console.log('port:', port);
+console.log('auth', auth);
 
 module.exports.session = session({
   store: new RedisStore({
