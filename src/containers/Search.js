@@ -13,11 +13,13 @@ class Search extends Component {
     const { handleSubmit } = this.props;
     
     return (
-      <div>
-        <form onSubmit={ handleSubmit }>
-          <Field name='videoSearchText' component={ RenderField } />  
-          <button type='submit'>Search</button>
-        </form>
+      <div className = 'search'>
+        <div className = 'field'>
+          <form onSubmit={ handleSubmit }>
+            <img src = './images/search.svg' id = 'search_image'></img>
+            <Field name='videoSearchText' component={ RenderField } /> 
+          </form>
+        </div>
       </div>
     );
   };

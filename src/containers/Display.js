@@ -7,6 +7,7 @@ import { withRouter } from 'react-router'
 
 import Login from '../components/Login.js';
 import Search from './Search.js';
+import Nav from '../components/Nav.js'
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 
@@ -29,17 +30,16 @@ class Display extends Component {
             </div>
           </Route>
           <Route path = '/results' >
-            <div className = 'video_list' >
-              <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>
+            <div className = 'results' >
+              <Nav handleVideoSearch = { handleVideoSearch } history = { history } />
               <VideoList history = { history } />
-              <a  href='/logout'> Logout </a>
             </div>
           </Route>
           <Route path = '/watch'>
-            <div className = 'video_player' >
-              <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
+            <div className = 'watch' >
+              {/* <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
               <VideoPlayer onSubmit = { event => handleMessageSend(liveChatId, event.videoChatText) }/>
-              <a  href='/logout'> Logout </a>                  
+              <a  href='/logout'> Logout </a> */}
             </div>
           </Route>
         </Switch>        

@@ -42,3 +42,53 @@ grid-template-areas:
   align-self: center; 
   justify-self: center;
 }
+
+.results {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 35px 1fr 35px;
+  grid-template-areas:
+    " nav "
+    " . "
+    " video_list "
+    " . " ;
+}
+
+.nav {
+  grid-area: nav;
+
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  grid-template-rows: 1fr;
+  grid-template-areas:  " nav_search nav_logout";
+}
+
+.nav > .search {
+  grid-area: nav_search;
+
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    " . nav_search_field "
+}
+
+.search > .field {
+  grid-area: nav_search_field;
+  align-self: center; 
+}
+
+.nav > .logout {
+  grid-area: nav_logout;
+  align-self: center; 
+  justify-self: center;
+}
+
+.video_list {
+  grid-area: video_list;
+}
+
+#search_image {
+  height: 10px;
+  width: 10px;
+}
