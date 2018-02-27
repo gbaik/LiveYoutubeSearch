@@ -24,7 +24,8 @@ passport.use(new GoogleStrategy({
 
       if (!user) {
         let user = new User({
-            profile_id: profile.id
+            profile_id: profile.id,
+            access_token: accessToken
         });
 
         user.save(function(err) {
@@ -33,8 +34,8 @@ passport.use(new GoogleStrategy({
           }
         });
       } 
-        return cb(err, user);
       
+      return cb(err, user);
     })
   }
 ));

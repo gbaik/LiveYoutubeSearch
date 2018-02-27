@@ -9,7 +9,6 @@ const port = params ? params.port : 6379;
 const redisClient = redis.createClient(port, host);
 const auth = params ? redisClient.auth(params.auth.split(':')[1]) : null;
 
-
 module.exports.verify = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
@@ -17,10 +16,6 @@ module.exports.verify = (req, res, next) => {
     res.redirect('/');
   }
 };
-
-console.log('host:', host);
-console.log('port:', port);
-console.log('auth', auth);
 
 module.exports.session = session({
   store: new RedisStore({
