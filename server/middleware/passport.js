@@ -16,7 +16,6 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.REDIRECT_URIS
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log('accessToken', accessToken);
     User.findOne({ profile_id: profile.id }, function(err, user) {
       if (err) {
           throw err;
@@ -28,14 +27,10 @@ passport.use(new GoogleStrategy({
             access_token: accessToken
         });
 
-        user.save(function(err) {
-          if (err) {
-            throw err;
-          }
-        });
-      } 
-      
-      return cb(err, user);
+        user.save(cb);
+      } else {
+        return cb(err, user);
+      }
     })
   }
 ));
