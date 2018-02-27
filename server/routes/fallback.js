@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.route('/')
   .get(middleware.auth.verify, function (req, res) {
-  res.sendFile(path.resolve(__dirname + '/../../dist/index.html'));
-});
+    res.sendFile(path.resolve(__dirname + '/../../dist/index.html'));
+  });
 
 
 module.exports = router;

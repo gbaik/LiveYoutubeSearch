@@ -3,6 +3,8 @@ const RedisStore = require('connect-redis')(session);
 const url = require('url');
 const redis = require('redis');
 
+const params = url.parse(process.env.REDIS_URL);
+
 module.exports.verify = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
@@ -14,8 +16,8 @@ module.exports.verify = (req, res, next) => {
 module.exports.session = session({
   store: new RedisStore({
     client: redis.createClient(),
-    host: 'localhost',
-    port: 6379
+    host: params.hostname || 'localhost',
+    port: params.port || 6379
   }),
   secret: process.env.SESSION_SECRET,
   resave: false,
