@@ -8,7 +8,7 @@ router.get('/message', function (req, res) {
   
   const options = {
     method: 'POST',
-    url: `https://www.googleapis.com/youtube/v3/liveChat/messages?part=snippet&access_token=${accessToken}`, 
+    url: `https://www.googleapis.com/youtube/v3/liveChat/messages?part=snippet&access_token=${process.env.accessToken}`, 
     body: {
       "snippet": {
         "type": "textMessageEvent",

@@ -12,11 +12,12 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new GoogleStrategy({
-  clientID: config.Google.client_id,
-  clientSecret: config.Google.client_secret,
-  callbackURL: config.Google.redirect_uris
+  clientID: process.env.CLIENT_ID || config.Google.client_id,
+  clientSecret: process.env.CLIENT_SECRETS || config.Google.client_secret,
+  callbackURL: process.env.REDIRECT_URIS || config.Google.redirect_uris
   },
   function(accessToken, refreshToken, profile, cb) {
+    console.log('accessToken', accessToken);
     User.findOne({ profile_id: profile.id }, function(err, user) {
       if (err) {
           throw err;
