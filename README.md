@@ -24,3 +24,4 @@ IMPORTANT: ensure `mongodb` is running before performing these steps.
 - Seed the database and have a default video list shown
 - Add more error handling on backend
 - Sanitize form inputs
+- Empty messages when sent 
