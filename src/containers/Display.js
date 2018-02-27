@@ -7,11 +7,9 @@ import { withRouter } from 'react-router'
 
 import Login from '../components/Login.js';
 import Search from './Search.js';
-import Nav from '../components/Nav.js'
+import Nav from './Nav.js'
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
-
-import { searchVideo } from '../stores/Display/actions';
 
 class Display extends Component { 
   constructor(props) { 
@@ -31,15 +29,14 @@ class Display extends Component {
           </Route>
           <Route path = '/results' >
             <div className = 'results' >
-              <Nav handleVideoSearch = { handleVideoSearch } history = { history } />
+              <Nav history = { history } />
               <VideoList history = { history } />
             </div>
           </Route>
           <Route path = '/watch'>
             <div className = 'watch' >
-              {/* <Search onSubmit = { event => handleVideoSearch(history, event.videoSearchText)}/>                  
+              <Nav history = { history } />
               <VideoPlayer onSubmit = { event => handleMessageSend(liveChatId, event.videoChatText) }/>
-              <a  href='/logout'> Logout </a> */}
             </div>
           </Route>
         </Switch>        
@@ -47,13 +44,6 @@ class Display extends Component {
     );
   };
 };
-
-const updateVideo = (videoSearchText) => (dispatch => (
-  axios.get(`/search?query=${videoSearchText}`)
-    .then(videos => (
-      dispatch(searchVideo(videos))
-    ))
-));
 
 const sendMessage = (liveChatId, videoChatText) => (dispatch => (
   axios.get(`/send/message?liveChatId=${liveChatId}&message=${videoChatText}`)
@@ -63,12 +53,6 @@ const mapStateToProps = (state) => ({ liveChatId: state.Display.liveChatId });
 
 const mapDispatchToProps = (dispatch) => (
   {
-    handleVideoSearch: (history, videoSearchText) => (
-      dispatch(updateVideo(videoSearchText))
-        .then(() => (
-          history.push(`/results?search_query=${videoSearchText}`)
-        ))
-    ),
     handleMessageSend: (liveChatId, videoChatText) => {
       if (videoChatText) {
         dispatch(sendMessage(liveChatId, videoChatText))

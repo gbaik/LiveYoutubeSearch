@@ -16,8 +16,10 @@ class Search extends Component {
       <div className = 'search'>
         <div className = 'field'>
           <form onSubmit={ handleSubmit }>
-            <img src = './images/search.svg' id = 'search_image'></img>
-            <Field name='videoSearchText' component={ RenderField } /> 
+            <Field name = 'videoSearchText' component = { RenderField } /> 
+            <button type = 'submit'>
+              <img src = './images/search.svg' id = 'search_image'></img>            
+            </button>
           </form>
         </div>
       </div>
