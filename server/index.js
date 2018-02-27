@@ -1,7 +1,9 @@
 const express = require('express');
+const favicon = require('serve-favicon');
 const middleware = require('./middleware');
-const path = require('path');
 const routes = require('./routes');
+const path = require('path');
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +18,7 @@ const options = {
 
 // app.use(middleware.auth.session);
 app.use(express.static(path.join(__dirname, '/../dist'), options));
+app.use(favicon(path.join(__dirname, '/../dist/images','favicon.png')));
 app.use(middleware.passport.initialize());
 // app.set('trust proxy', 1) // trust first proxy
 // app.use(middleware.passport.session());
