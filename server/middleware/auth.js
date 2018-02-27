@@ -6,8 +6,8 @@ const redis = require('redis');
 const params = process.env.REDIS_URL ? url.parse(process.env.REDIS_URL) : null;
 const host = params ? params.hostname : 'localhost';
 const port = params ? params.port : 6379;
-const auth = params ? params.auth.split(':')[1] : null;
-const redisClient = params ? redis.createClient().auth(auth) : redis.createClient();
+const redisClient = redis.createClient(port, host);
+const auth = params ? redisClient.auth(params.auth.split(':')[1]) : null;
 
 
 module.exports.verify = (req, res, next) => {
@@ -24,9 +24,7 @@ console.log('auth', auth);
 
 module.exports.session = session({
   store: new RedisStore({
-    client: redisClient,
-    host: host,
-    port: port
+    client: redisClient
   }),
   secret: process.env.SESSION_SECRET,
   resave: false,
