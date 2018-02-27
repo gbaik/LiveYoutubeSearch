@@ -17,11 +17,12 @@ IMPORTANT: ensure `mongodb` is running before performing these steps.
 ```
 
 ## Future Work
-- Fix styling
 - Fix how access token is stored
-- Make it so the url, reflects the video shown instead of being for visual
+- Fix styling
+- Empty messages when sent
 - Make video chat update in real time using sockets
-- Seed the database and have a default video list shown
+- Make it so the url, reflects the video shown instead of being for visual
 - Add more error handling on backend
 - Sanitize form inputs
-- Empty messages when sent 
+- Seed the database and have a default video list shown
+- Optimize
